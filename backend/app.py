@@ -30,7 +30,7 @@ class BrailleCNN(nn.Module):
 
 # Crear la app Flask
 app = Flask(__name__)
-CORS(app, origins=['*'])  # Habilitar CORS para producción
+CORS(app, origins=['https://iimblsm-translator-frontend.onrender.com'])  # Habilitar CORS para producción
 
 # Cargar el modelo entrenado
 model = BrailleCNN()
