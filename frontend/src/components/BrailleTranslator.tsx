@@ -11,9 +11,10 @@ interface Translation {
 
 interface BrailleTranslatorProps {
   capturedImage: string | null;
+  detectedLetter?: { letter: string; confidence: number } | null;
 }
 
-const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage }) => {
+const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, detectedLetter }) => {
   const [translations, setTranslations] = useState<Translation[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentTranslation, setCurrentTranslation] = useState<Translation | null>(null);
@@ -152,7 +153,44 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage }) 
         </div>
       )}
 
-      {currentTranslation && !isProcessing && (
+      {detectedLetter && (
+        <div className="mb-6 animate-fade-in">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">Letra Detectada por IA</h3>
+              <div className={`px-3 py-1 rounded-full text-sm font-medium ${getConfidenceColor(detectedLetter.confidence * 100)}`}>
+                {(detectedLetter.confidence * 100).toFixed(1)}% confianza
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="text-8xl font-bold text-blue-600 mb-4">
+                {detectedLetter.letter}
+              </div>
+              <p className="text-gray-600 mb-4">
+                Letra braille detectada por el modelo de inteligencia artificial
+              </p>
+              
+              <div className="bg-white rounded-xl p-4 border border-blue-200">
+                <p className="text-sm text-gray-600 mb-2">Representación en braille:</p>
+                <p className="text-3xl font-mono text-blue-800">
+                  {convertToBraille(detectedLetter.letter)}
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+              <span>Detectado en tiempo real</span>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <span>IA activa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {currentTranslation && !isProcessing && !detectedLetter && (
         <div className="mb-6 animate-fade-in">
           <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border border-green-200">
             <div className="flex items-center justify-between mb-4">

@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import torch
 import torch.nn as nn
 from torchvision import transforms
@@ -28,6 +29,7 @@ class BrailleCNN(nn.Module):
 
 # Crear la app Flask
 app = Flask(__name__)
+CORS(app)  # Habilitar CORS para el frontend
 
 # Cargar el modelo entrenado
 model = BrailleCNN()
@@ -75,4 +77,4 @@ def predict():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

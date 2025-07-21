@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
-import WebcamCapture from './WebcamCapture';
+import BrailleCamera from './BrailleCamera';
 import BrailleTranslator from './BrailleTranslator';
 
 const BrailleApp: React.FC = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const [detectedLetter, setDetectedLetter] = useState<{ letter: string; confidence: number } | null>(null);
 
   const handleCapture = (imageData: string) => {
     setCapturedImage(imageData);
+  };
+
+  const handleLetterDetection = (letter: string, confidence: number) => {
+    setDetectedLetter({ letter, confidence });
   };
 
   return (
@@ -31,7 +36,7 @@ const BrailleApp: React.FC = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    <WebcamCapture onCapture={handleCapture} />
+                    <BrailleCamera onLetterDetected={handleLetterDetection} />
                   </div>
                 </div>
               </div>
@@ -46,7 +51,7 @@ const BrailleApp: React.FC = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    <BrailleTranslator capturedImage={capturedImage} />
+                    <BrailleTranslator capturedImage={capturedImage} detectedLetter={detectedLetter} />
                   </div>
                 </div>
               </div>
