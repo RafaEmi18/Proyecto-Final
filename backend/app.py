@@ -45,6 +45,10 @@ transform = transforms.Compose([
     transforms.Normalize((0.5,), (0.5,))
 ])
 
+@app.route("/")
+def home():
+    return "<h1>¡Backend funcionando correctamente!</h1>"
+
 # Ruta principal para recibir la imagen y hacer la predicción
 @app.route('/predict', methods=['POST'])
 def predict():
