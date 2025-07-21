@@ -1,13 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-
-import tailwindcss from '@tailwindcss/vite';
+import tailwind from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwind()],
+  },
+  build: {
+    assets: '_astro',
+  },
+  output: 'static',
+  site: 'https://tu-frontend-render.onrender.com', // Cambiar por tu URL de Render
 });

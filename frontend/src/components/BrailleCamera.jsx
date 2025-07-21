@@ -77,7 +77,7 @@ const BrailleCamera = ({ onLetterDetected }) => {
       const imageData = canvas.toDataURL('image/jpeg', 0.8);
       
       // Enviar al backend
-      const response = await fetch('http://localhost:5000/predict', {
+      const response = await fetch(import.meta.env.DEV ? 'http://localhost:5000/predict' : 'https://tu-backend-render.onrender.com/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

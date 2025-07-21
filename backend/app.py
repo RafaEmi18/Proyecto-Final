@@ -6,6 +6,7 @@ from torchvision import transforms
 from PIL import Image
 import io
 import base64
+import os
 
 CLASSES = ['A', 'B', 'C']
 
@@ -29,7 +30,7 @@ class BrailleCNN(nn.Module):
 
 # Crear la app Flask
 app = Flask(__name__)
-CORS(app)  # Habilitar CORS para el frontend
+CORS(app, origins=['*'])  # Habilitar CORS para producción
 
 # Cargar el modelo entrenado
 model = BrailleCNN()
@@ -77,4 +78,5 @@ def predict():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
