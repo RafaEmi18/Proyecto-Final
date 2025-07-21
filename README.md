@@ -109,10 +109,7 @@ Proyecto-Final/
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
-
-Este proyecto es parte del Proyecto Final de Integrador.
 
 ---
 
-**Desarrollado con ❤️ para hacer la tecnología más accesible**
+**Desarrollado con Amor**
