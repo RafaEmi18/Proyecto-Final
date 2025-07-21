@@ -1,10 +1,10 @@
-# 🦯 Traductor de Braille en Tiempo Real
+#  Traductor de Braille en Tiempo Real
 
-## 📋 Descripción
+##  Descripción
 
 Sistema de traducción de Braille que utiliza inteligencia artificial para detectar y traducir texto braille en tiempo real usando la cámara del dispositivo.
 
-## ✨ Características
+##  Características
 
 - **Detección en tiempo real**: Captura automática de imágenes desde la cámara
 - **IA avanzada**: Modelo CNN entrenado para reconocer letras braille (A, B, C)
@@ -12,7 +12,7 @@ Sistema de traducción de Braille que utiliza inteligencia artificial para detec
 - **Alta precisión**: 95%+ de confianza en las detecciones
 - **Responsivo**: Funciona en móviles, tablets y computadoras
 
-## 🛠️ Tecnologías
+##  Tecnologías
 
 ### Backend
 - **Python** con Flask
@@ -26,7 +26,7 @@ Sistema de traducción de Braille que utiliza inteligencia artificial para detec
 - **TailwindCSS** para estilos
 - **WebRTC** para acceso a cámara
 
-## 🚀 Instalación y Uso
+##  Instalación y Uso
 
 ### Opción 1: Script Automático (Windows)
 ```bash
@@ -50,7 +50,7 @@ npm install
 npm run dev
 ```
 
-## 📱 Cómo Usar
+##  Cómo Usar
 
 1. **Abrir la aplicación**: Ve a `http://localhost:4321`
 2. **Permitir cámara**: Autoriza el acceso a la cámara cuando se solicite
@@ -58,7 +58,7 @@ npm run dev
 4. **Ver resultado**: La letra detectada aparecerá en el panel derecho
 5. **Modo automático**: Activa "Auto Captura" para detección continua
 
-## 🎯 Funcionalidades
+##  Funcionalidades
 
 - **Captura manual**: Presiona "Capturar" para procesar una imagen
 - **Captura automática**: Activa "Auto Captura" para detección cada 2 segundos
@@ -66,7 +66,7 @@ npm run dev
 - **Resultados detallados**: Letra detectada con porcentaje de confianza
 - **Representación braille**: Muestra el símbolo braille correspondiente
 
-## 🔧 Configuración
+##  Configuración
 
 ### Modelo IA
 El modelo CNN está entrenado para detectar las letras A, B, C en braille. Para expandir:
@@ -79,7 +79,7 @@ Por defecto el backend corre en `http://localhost:5000`. Para cambiar:
 1. Modificar `app.run(host='0.0.0.0', port=5000)` en `app.py`
 2. Actualizar la URL en `BrailleCamera.jsx`
 
-## 📊 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 Proyecto-Final/
@@ -101,7 +101,7 @@ Proyecto-Final/
 └── start-project.bat      # Script de inicio automático
 ```
 
-## 🤝 Contribuir
+##  Contribuir
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
