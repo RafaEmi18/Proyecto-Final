@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
               <span className="text-2xl text-zinc-500">⠠⠊⠁</span>
             </div>
             <h1 className="text-2xl font-bold text-black">
-              Simulador
+            Intérprete Inteligente Multisensorial de Braille y LSM
             </h1>
           </div>
           

@@ -1,4 +1,4 @@
-#  Traductor de Braille en Tiempo Real
+#  Intérprete Inteligente Multisensorial de Braille y LSM
 
 ##  Descripción
 
