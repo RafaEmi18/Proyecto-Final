@@ -13,5 +13,5 @@ export default defineConfig({
     assets: '_astro',
   },
   output: 'static',
-  site: 'https://tu-frontend-render.onrender.com', // Cambiar por tu URL de Render
+  site: 'https://iimblsm-translator-frontend.onrender.com', 
 });
