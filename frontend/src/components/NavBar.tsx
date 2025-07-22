@@ -8,7 +8,7 @@ const NavBar: React.FC = () => {
           {/* Logo y nombre */}
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 bg-gray-300 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-2xl text-zinc-500">⠠⠊⠁</span>
+              <img src="/logo_braille_señas.svg" alt="Logo" className="w-12 h-12" />
             </div>
             <h1 className="text-2xl font-bold text-black">
             Intérprete Inteligente Multisensorial de Braille y LSM
