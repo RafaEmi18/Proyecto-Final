@@ -46,7 +46,6 @@ const BrailleApp: React.FC = () => {
                     </p>
                   </div>
                   <div className="flex-1">
-                    <BrailleTranslator capturedImage={capturedImage} detectedLetter={detectedLetter} />
                     <BrailleTranslator detectedLetter={detectedLetter} />
                   </div>
                 </div>
