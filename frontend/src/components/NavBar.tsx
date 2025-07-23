@@ -26,13 +26,13 @@ const NavBar: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <a 
               href="/" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+              className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
             >
               Traductor Braille
             </a>
             <a 
               href="/lsm" 
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+              className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
             >
               Traductor LSM
             </a>

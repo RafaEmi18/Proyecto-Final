@@ -53,17 +53,19 @@ const LSMApp: React.FC = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {[
-              { name: 'Hola', emoji: '👋', description: 'Saludo básico' },
-              { name: 'Gracias', emoji: '🙏', description: 'Expresión de gratitud' },
-              { name: 'Bien', emoji: '👍', description: 'Estado positivo' },
-              { name: 'Mal', emoji: '👎', description: 'Estado negativo' },
-              { name: 'Cómo estás', emoji: '🤔', description: 'Pregunta sobre estado' }
+              { name: 'Hola', emoji: '/img/image.png', description: 'Saludo básico' },
+              { name: 'Gracias', emoji: '/img/img1.png', description: 'Expresión de gratitud' },
+              { name: 'Bien', emoji: '/img/img2.png', description: 'Estado positivo' },
+              { name: 'Mal', emoji: '/img/img3.png', description: 'Estado negativo' },
+              { name: 'Cómo estás', emoji: '/img/img4.png', description: 'Pregunta sobre estado' }
             ].map((sign, index) => (
               <div 
                 key={index}
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 border border-white/20"
               >
-                <div className="text-6xl mb-4">{sign.emoji}</div>
+                <div className="text-6xl mb-4">
+                  <img src={sign.emoji} alt={sign.name} className="rounded-xl" />
+                </div>
                 <h3 className="text-lg font-bold text-white mb-2">{sign.name}</h3>
                 <p className="text-gray-300 text-sm">{sign.description}</p>
               </div>
@@ -81,13 +83,22 @@ const LSMApp: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-5 gap-4">
-            {['A', 'B', 'C', 'D', 'E'].map((letter, index) => (
+            {[
+              { letter: 'A', img: '/img/lsm/a.png' },
+              { letter: 'B', img: '/img/lsm/b.png' },
+              { letter: 'C', img: '/img/lsm/c.png' },
+              { letter: 'D', img: '/img/lsm/d.png' },
+              { letter: 'E', img: '/img/lsm/e.png' }
+            ].map((item, index) => (
               <div 
                 key={index}
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all duration-300 border border-white/20"
               >
-                <div className="text-4xl font-bold text-blue-400 mb-2">{letter}</div>
-                <p className="text-gray-300 text-sm">Letra {letter}</p>
+                <div className="mb-2 flex justify-center">
+                  <img src={item.img} alt={`Letra ${item.letter}`} className="w-20 h-20 object-contain rounded-xl shadow-lg" />
+                </div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">{item.letter}</div>
+                <p className="text-gray-300 text-sm">Letra {item.letter}</p>
               </div>
             ))}
           </div>
