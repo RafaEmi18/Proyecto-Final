@@ -178,8 +178,8 @@ const LSMCamera = ({ onSignDetected }) => {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-xl">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-2">Cámara en vivo</h2>
-        <p className="text-gray-300">Reconocimiento en tiempo real de señas mediante puntos clave de la mano.</p>
+        <h2 className="text-2xl font-bold text-black mb-2">Cámara en vivo</h2>
+        <p className="text-black">Reconocimiento en tiempo real de señas mediante puntos clave de la mano.</p>
       </div>
 
       <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gray-800">

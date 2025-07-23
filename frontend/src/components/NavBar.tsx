@@ -63,14 +63,14 @@ const NavBar: React.FC = () => {
                   className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  📖 Traductor Braille
+                  Traductor Braille
                 </a>
                 <a 
                   href="/lsm" 
                   className="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🤟 Traductor LSM
+                  Traductor LSM
                 </a>
               </div>
             </div>
