@@ -241,7 +241,7 @@ const BrailleCamera = ({ onLetterDetected }) => {
               : 'bg-green-600 hover:bg-green-700 text-white'
           }`}
         >
-          {autoCapture ? 'Detener Auto' : 'Auto Captura'}
+          {autoCapture ? 'Detener Auto Captura' : 'Iniciar Auto Captura'}
         </button>
       </div>
 
