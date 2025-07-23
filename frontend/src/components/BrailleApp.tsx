@@ -4,12 +4,7 @@ import BrailleCamera from './BrailleCamera';
 import BrailleTranslator from './BrailleTranslator';
 
 const BrailleApp: React.FC = () => {
-  const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [detectedLetter, setDetectedLetter] = useState<{ letter: string; confidence: number } | null>(null);
-
-  const handleCapture = (imageData: string) => {
-    setCapturedImage(imageData);
-  };
 
   const handleLetterDetection = (letter: string, confidence: number) => {
     setDetectedLetter({ letter, confidence });
@@ -52,6 +47,7 @@ const BrailleApp: React.FC = () => {
                   </div>
                   <div className="flex-1">
                     <BrailleTranslator capturedImage={capturedImage} detectedLetter={detectedLetter} />
+                    <BrailleTranslator detectedLetter={detectedLetter} />
                   </div>
                 </div>
               </div>

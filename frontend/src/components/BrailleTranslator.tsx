@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 interface Translation {
   id: string;
-  imageData: string;
   originalText: string;
   brailleText: string;
   timestamp: Date;
@@ -10,58 +9,12 @@ interface Translation {
 }
 
 interface BrailleTranslatorProps {
-  capturedImage: string | null;
   detectedLetter?: { letter: string; confidence: number } | null;
 }
 
-const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, detectedLetter }) => {
+const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ detectedLetter }) => {
   const [translations, setTranslations] = useState<Translation[]>([]);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [currentTranslation, setCurrentTranslation] = useState<Translation | null>(null);
-  const [processingStep, setProcessingStep] = useState('');
 
-  const translateBraille = async (imageData: string): Promise<Translation> => {
-    setIsProcessing(true);
-    
-    const steps = [
-      'Analizando imagen...',
-      'Detectando puntos braille...',
-      'Procesando patrones...',
-      'Generando traducción...'
-    ];
-    
-    for (let i = 0; i < steps.length; i++) {
-      setProcessingStep(steps[i]);
-      await new Promise(resolve => setTimeout(resolve, 800));
-    }
-    
-    const sampleTexts = [
-      { text: "Hola mundo", confidence: 95 },
-      { text: "Buenos días", confidence: 92 },
-      { text: "Educación inclusiva", confidence: 88 },
-      { text: "Tecnología accesible", confidence: 94 },
-      { text: "Bienvenido", confidence: 97 },
-      { text: "Gracias por usar nuestro traductor", confidence: 91 },
-      { text: "La lectura es fundamental", confidence: 89 },
-      { text: "Accesibilidad para todos", confidence: 93 }
-    ];
-    
-    const randomSample = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
-    const brailleEquivalent = convertToBraille(randomSample.text);
-    
-    const translation: Translation = {
-      id: Date.now().toString(),
-      imageData,
-      originalText: randomSample.text,
-      brailleText: brailleEquivalent,
-      timestamp: new Date(),
-      confidence: randomSample.confidence
-    };
-    
-    setIsProcessing(false);
-    setProcessingStep('');
-    return translation;
-  };
 
   const convertToBraille = (text: string): string => {
     const brailleMap: { [key: string]: string } = {
@@ -76,25 +29,22 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
     return text.toLowerCase().split('').map(char => brailleMap[char] || char).join('');
   };
 
+  // Agregar letra detectada al historial
   useEffect(() => {
-    if (capturedImage) {
-      handleTranslation(capturedImage);
+    if (detectedLetter && detectedLetter.confidence > 0.7) {
+      const translation: Translation = {
+        id: Date.now().toString(),
+        originalText: detectedLetter.letter,
+        brailleText: convertToBraille(detectedLetter.letter),
+        timestamp: new Date(),
+        confidence: detectedLetter.confidence * 100
+      };
+      setTranslations(prev => [translation, ...prev.slice(0, 9)]);
     }
-  }, [capturedImage]);
-
-  const handleTranslation = async (imageData: string) => {
-    try {
-      const translation = await translateBraille(imageData);
-      setCurrentTranslation(translation);
-      setTranslations(prev => [translation, ...prev.slice(0, 4)]);
-    } catch (error) {
-      console.error('Error translating:', error);
-    }
-  };
+  }, [detectedLetter]);
 
   const clearHistory = () => {
     setTranslations([]);
-    setCurrentTranslation(null);
   };
 
   const copyToClipboard = (text: string) => {
@@ -130,29 +80,6 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
         )}
       </div>
 
-      {isProcessing && (
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 mb-6 border border-blue-200">
-          <div className="text-center space-y-6">
-            <div className="relative">
-              <div className="w-16 h-16 mx-auto">
-                <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-transparent border-t-blue-600 rounded-full animate-spin"></div>
-                <div className="absolute inset-2 border-4 border-transparent border-t-purple-500 rounded-full animate-spin animation-delay-75"></div>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Procesando imagen</h3>
-              <p className="text-blue-600 font-medium">{processingStep}</p>
-            </div>
-            
-            <div className="w-full bg-blue-200 rounded-full h-2">
-              <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full animate-pulse" style={{width: '70%'}}></div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {detectedLetter && (
         <div className="mb-6 animate-fade-in">
           <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
@@ -176,63 +103,6 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
                 <p className="text-3xl font-mono text-blue-800">
                   {convertToBraille(detectedLetter.letter)}
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {currentTranslation && !isProcessing && !detectedLetter && (
-        <div className="mb-6 animate-fade-in">
-          <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border border-green-200">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Resultado de traducción</h3>
-              <div className={`px-3 py-1 rounded-full text-sm font-medium ${getConfidenceColor(currentTranslation.confidence)}`}>
-                {currentTranslation.confidence}% confianza
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Texto traducido:</label>
-                <div className="bg-white border-2 border-green-300 rounded-xl p-4 relative group">
-                  <p className="text-lg font-semibold text-green-800">{currentTranslation.originalText}</p>
-                  <button 
-                    onClick={() => copyToClipboard(currentTranslation.originalText)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 hover:bg-green-100 rounded-lg"
-                    title="Copiar texto"
-                  >
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Representación braille:</label>
-                <div className="bg-gray-900 rounded-xl p-4 relative group">
-                  <p className="text-2xl font-mono text-yellow-400 tracking-wider leading-relaxed">
-                    {currentTranslation.brailleText}
-                  </p>
-                  <button 
-                    onClick={() => copyToClipboard(currentTranslation.brailleText)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 hover:bg-gray-800 rounded-lg"
-                    title="Copiar braille"
-                  >
-                    <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <span>Traducido el {currentTranslation.timestamp.toLocaleString()}</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>Traducción completada</span>
               </div>
             </div>
           </div>
@@ -282,8 +152,8 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
         </div>
       )}
 
-      {/*  */}
-      {!capturedImage && !isProcessing && translations.length === 0 && !detectedLetter && (
+      {/* Estado vacío */}
+      {translations.length === 0 && !detectedLetter && (
         <div className="text-center py-12 space-y-6">
           <div className="w-24 h-24 mx-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
             <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
