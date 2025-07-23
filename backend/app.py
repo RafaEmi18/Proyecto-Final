@@ -8,7 +8,7 @@ import io
 import base64
 import os
 
-CLASSES = ['A', 'B', 'C']
+CLASSES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 # Modelo CNN de Braille
 class BrailleCNN(nn.Module):
