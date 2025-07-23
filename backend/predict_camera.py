@@ -6,7 +6,7 @@ from torchvision import transforms
 import os
 import time
 
-CLASSES = ['A', 'B', 'C']
+CLASSES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 transform = transforms.Compose([
     transforms.Resize((64, 64)),
