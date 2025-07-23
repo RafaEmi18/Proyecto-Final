@@ -157,7 +157,7 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
         <div className="mb-6 animate-fade-in">
           <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 border border-blue-200">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Letra Detectada por IA</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Letra Detectada</h3>
               <div className={`px-3 py-1 rounded-full text-sm font-medium ${getConfidenceColor(detectedLetter.confidence * 100)}`}>
                 {(detectedLetter.confidence * 100).toFixed(1)}% confianza
               </div>
@@ -168,7 +168,7 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
                 {detectedLetter.letter}
               </div>
               <p className="text-gray-600 mb-4">
-                Letra braille detectada por el modelo de inteligencia artificial
+                Letra braille detectada por el modelo entrenado
               </p>
               
               <div className="bg-white rounded-xl p-4 border border-blue-200">
@@ -176,14 +176,6 @@ const BrailleTranslator: React.FC<BrailleTranslatorProps> = ({ capturedImage, de
                 <p className="text-3xl font-mono text-blue-800">
                   {convertToBraille(detectedLetter.letter)}
                 </p>
-              </div>
-            </div>
-            
-            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <span>Detectado en tiempo real</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span>IA activa</span>
               </div>
             </div>
           </div>

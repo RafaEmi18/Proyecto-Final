@@ -245,27 +245,6 @@ const BrailleCamera = ({ onLetterDetected }) => {
         </button>
       </div>
 
-      {/* Resultado de predicción */}
-      {prediction && (
-        <div className="mt-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border border-green-200">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-800">Letra Detectada</h3>
-            <div className={`px-3 py-1 rounded-full text-sm font-medium ${getConfidenceColor(prediction.confidence)}`}>
-              {(prediction.confidence * 100).toFixed(1)}% confianza
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <div className="text-6xl font-bold text-green-600 mb-2">
-              {prediction.letter}
-            </div>
-            <p className="text-gray-600">
-              Letra braille detectada con alta precisión
-            </p>
-          </div>
-        </div>
-      )}
-
       <canvas ref={canvasRef} className="hidden" />
     </div>
   );
