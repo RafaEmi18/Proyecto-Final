@@ -36,6 +36,12 @@ const NavBar: React.FC = () => {
             >
               Traductor LSM
             </a>
+            <a 
+              href="/statistics" 
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              📊 Estadísticas
+            </a>
           </div>
           
           {/* Botón hamburguesa móvil */}
@@ -71,6 +77,13 @@ const NavBar: React.FC = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Traductor LSM
+                </a>
+                <a 
+                  href="/statistics" 
+                  className="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  📊 Estadísticas
                 </a>
               </div>
             </div>

@@ -7,10 +7,12 @@ Sistema de traducción de Braille que utiliza inteligencia artificial para detec
 ##  Características
 
 - **Detección en tiempo real**: Captura automática de imágenes desde la cámara
-- **IA avanzada**: Modelo CNN entrenado para reconocer letras braille (A, B, C)
+- **IA avanzada**: Modelo CNN entrenado para reconocer letras braille (A-Z)
 - **Interfaz moderna**: Diseño tipo Google Translate con TailwindCSS
 - **Alta precisión**: 95%+ de confianza en las detecciones
 - **Responsivo**: Funciona en móviles, tablets y computadoras
+- **📊 Análisis estadístico**: Sistema completo de estimación puntual y por intervalos
+- **📈 Monitoreo en tiempo real**: Seguimiento de precisión, confianza y rendimiento
 
 ##  Tecnologías
 
@@ -19,6 +21,8 @@ Sistema de traducción de Braille que utiliza inteligencia artificial para detec
 - **PyTorch** para el modelo CNN
 - **OpenCV** para procesamiento de imágenes
 - **Flask-CORS** para comunicación con frontend
+- **NumPy & SciPy** para análisis estadístico
+- **Sistema de estimación** para intervalos de confianza
 
 ### Frontend
 - **Astro** como framework base
@@ -65,6 +69,9 @@ npm run dev
 - **Visualización en tiempo real**: Marco de detección con esquinas amarillas
 - **Resultados detallados**: Letra detectada con porcentaje de confianza
 - **Representación braille**: Muestra el símbolo braille correspondiente
+- **📊 Panel de estadísticas**: Estimaciones puntuales y por intervalos
+- **📈 Análisis por letra**: Rendimiento individual de cada letra A-Z
+- **⏱️ Monitoreo de rendimiento**: Tiempos de respuesta y métricas de confianza
 
 ##  Configuración
 
@@ -84,22 +91,57 @@ Por defecto el backend corre en `http://localhost:5000`. Para cambiar:
 ```
 Proyecto-Final/
 ├── backend/
-│   ├── app.py              # API Flask principal
-│   ├── predict_camera.py   # Script de detección con OpenCV
-│   ├── train.py           # Entrenamiento del modelo
-│   ├── braille_model.pth  # Modelo entrenado
-│   └── requeriments.txt   # Dependencias Python
+│   ├── app.py                      # API Flask principal
+│   ├── statistical_estimation.py   # Sistema de estimación estadística
+│   ├── test_statistics.py         # Script de pruebas estadísticas
+│   ├── predict_camera.py          # Script de detección con OpenCV
+│   ├── train.py                   # Entrenamiento del modelo
+│   ├── braille_model.pth          # Modelo entrenado
+│   ├── requirements.txt           # Dependencias Python
+│   └── README_ESTADISTICAS.md     # Documentación estadística
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── BrailleApp.tsx      # Componente principal
-│   │   │   ├── BrailleCamera.jsx   # Cámara en tiempo real
-│   │   │   └── BrailleTranslator.tsx # Traducción y resultados
+│   │   │   ├── BrailleApp.tsx          # Componente principal
+│   │   │   ├── BrailleCamera.jsx       # Cámara en tiempo real
+│   │   │   ├── BrailleTranslator.tsx   # Traducción y resultados
+│   │   │   ├── StatisticsPanel.tsx     # Panel de estadísticas
+│   │   │   └── NavBar.tsx              # Barra de navegación
 │   │   └── pages/
-│   │       └── index.astro         # Página principal
+│   │       ├── index.astro             # Página principal
+│   │       ├── lsm.astro               # Página LSM
+│   │       └── statistics.astro        # Página de estadísticas
 │   └── package.json
-└── start-project.bat      # Script de inicio automático
+└── start-project.bat              # Script de inicio automático
 ```
+
+##  📊 Sistema de Estadísticas
+
+El proyecto incluye un sistema completo de **estimación puntual y por intervalos** que permite:
+
+### Características del Sistema Estadístico
+- **Estimación puntual**: Valores medios de precisión, confianza y tiempo de respuesta
+- **Intervalos de confianza**: Rangos con 95% de confianza para cada métrica
+- **Análisis por letra**: Rendimiento individual de cada letra A-Z
+- **Monitoreo en tiempo real**: Seguimiento continuo del rendimiento del modelo
+
+### Cómo Usar las Estadísticas
+
+1. **Acceder al panel**: Ve a `http://localhost:4321/statistics`
+2. **Ver resumen**: Consulta las métricas generales del sistema
+3. **Análisis detallado**: Explora el rendimiento por letra individual
+4. **Guardar datos**: Exporta las estadísticas en formato JSON
+
+### Pruebas del Sistema Estadístico
+
+```bash
+cd backend
+python test_statistics.py
+```
+
+Este script genera datos de prueba y muestra las estimaciones estadísticas.
+
+Para más información, consulta `backend/README_ESTADISTICAS.md`.
 
 ##  Contribuir
 
@@ -112,4 +154,4 @@ Proyecto-Final/
 
 ---
 
-**Desarrollado con Amor**
+**Desarrollado con Amor y Rigor Estadístico** 📊✨
