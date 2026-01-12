@@ -115,7 +115,7 @@ Proyecto-Final/
 └── start-project.bat              # Script de inicio automático
 ```
 
-##  📊 Sistema de Estadísticas
+##  Sistema de Estadísticas (bloqueado por un tiempo)
 
 El proyecto incluye un sistema completo de **estimación puntual y por intervalos** que permite:
 
@@ -154,4 +154,4 @@ Para más información, consulta `backend/README_ESTADISTICAS.md`.
 
 ---
 
-**Desarrollado con Amor y Rigor Estadístico** 📊✨
+**Desarrollado con Amor y Rigor Estadístico** 
