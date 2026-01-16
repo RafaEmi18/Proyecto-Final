@@ -1,2 +1,40 @@
 braille_dataset/
 .env
+
+# Entornos virtuales
+venv/
+.venv/
+
+source/
+.source/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de caché y logs
+.DS_Store
+*.log
+*.tmp
+
+# Archivos de IDEs (ejemplos)
+.vscode/
+.idea/
+
+# Archivos generados por herramientas
+dist/
+build/
+*.egg-info/
+
+# Archivos de configuración local o secretos
+.env
+config.ini
+
+# Archivos de dependencias (Pipenv, Poetry, etc.)
+Pipfile.lock
+poetry.lock
+pdm.lock
+
+# Archivos de test
+.pytest_cache/
