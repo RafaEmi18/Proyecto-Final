@@ -32,7 +32,18 @@ class BrailleCNN(nn.Module):
 
 # Crear la app Flask
 app = Flask(__name__)
-CORS(app, origins=['https://iimblsm-translator-frontend.onrender.com'])  # Habilitar CORS para producción
+# Habilitar CORS: permitir dominio de producción y localhost durante desarrollo
+allowed_origins = [
+    'https://iimblsm-translator-frontend.onrender.com',
+    'http://localhost:4321'
+]
+# Permitir añadir orígenes adicionales mediante la variable de entorno ALLOWED_ORIGINS
+env_origins = os.environ.get('ALLOWED_ORIGINS')
+if env_origins:
+    allowed_origins.extend([o.strip() for o in env_origins.split(',') if o.strip()])
+
+# Habilitar CORS en la aplicación
+CORS(app, origins=allowed_origins, supports_credentials=True)
 
 # Inicializar el estimador estadístico
 estimator = BrailleStatisticalEstimator(confidence_level=0.95)
